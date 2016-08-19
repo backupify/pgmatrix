@@ -20,6 +20,14 @@ Once the prerequisites have been satisfied:
 `make`
 
 
+# Construction and Panel Layout
+The rpi-rgb-led-matrix repo has some great wisdom for constructing and wiring a display. I used the suggestion of alimunum bars for distributing current to the panels. I didn't have convenient access to a shop so I picked up some Door Bottoms from Ace Hardware. They are super cheap work perfectly as pre-drilled aluminum extrusions. The holes were distanced perfectly for the panels.
+
+To hold the panels together, we 3D printed some simple brackets and screwed them onto the panels. This was actually not enough support, so we planned to put a frame around the completed screen. However, zip-tying the aluminum extrusions across the back of the display added enough support for the display to hold together on its own. A frame would still be needed to mount the display.
+
+The server assumes that the panels are laid out in an 'S' formation, with the first panel in the bottom left corner, like so:
+
+
 # Usage
 You'll want to execute the program from a screen / tmux session.
 
@@ -35,6 +43,8 @@ In a second terminal run the server:
 
 `$ sudo ./matrix-server <brightness(1..100)> <width(1..32) <height(1..32)>`
 
+Brightness should be an integer from 0 to 100, and width and height are in panels, not in pixels.
+
 Note: The python client is responsible for making the named pipe if it does not exist. So if the pipe has not been made, the client must be run before to sever or the server will crash silently.
 
 TODO: Make server create pipe if it does not exist
@@ -47,7 +57,7 @@ session 1:
 
 session 2:
 
-`$ sudo matrix-server`
+`$ sudo matrix-server 50 6 4`
 
 # Examples
 
@@ -58,4 +68,5 @@ Currently included are:
 - A NewRelic app performance monitor
 - A mirror wall using the Raspberry Pi camera
 
-# More Things
+# Results and Notes
+After assembling the large (6x4x32px) display, we noticed that it is very straining to look at from a distance of less than six feet. 
