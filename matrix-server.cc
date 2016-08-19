@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "led-matrix.h"
 #include "transformer.h"
@@ -93,9 +94,7 @@ class MatrixServer {
 
 int main(int argc, char* argv[]) {
   if (argc != 4) {
-    std::cerr <<
-      "Invalid params. Usage:\n
-      \tmatrix-server <brightness(0..100)> <width(1..32)> <height(1..32)>\n";
+    std::cerr << "Invalid params. Usage:\n\tmatrix-server <brightness(0..100)> <width(1..32)> <height(1..32)>\n";
     exit(1);
   }
   uint8_t b = atoi(argv[1]);
