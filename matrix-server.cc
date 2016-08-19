@@ -73,9 +73,10 @@ class MatrixServer {
           x_0 = x_0 + row * width_;
           if (row % 2) {
             y_0 = (PANEL_SIZE - 1) - y_0;
-            x_0 = width_ - (x_0 - ((width_) * row)) + (width_ - 1) * row;
+            x_0 = width_ - (x_0 - ((width_) * (row))) + (width_ - 1) * (row);
+            x_0 += row - row % 2;
           }
-          setPixelBuffered(x_0, y_0, frameBuffer_[pos], frameBuffer_[pos + 1], frameBuffer_[pos + 2]);
+          setPixelBuffered(x_0, y_0, frameBuffer_[pos + 2], frameBuffer_[pos + 1], frameBuffer_[pos]);
         }
       }
       drawBuffer();
