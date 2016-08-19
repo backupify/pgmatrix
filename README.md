@@ -22,17 +22,32 @@ Once the prerequisites have been satisfied:
 
 # Usage
 You'll want to execute the program from a screen / tmux session.
-Open two terminals. In one terminal run the server:
 
-`$ sudo ./matrix-server <brightness(1..100)> <width(1..32) <height(1..32)>`
-
-In a second terminal, cd into the client directory:
+In one terminal, cd into the client directory:
 
 `$ cd client`
 
-run the desired script:
+and run the desired script:
 
 `$ sudo python ./demo-image.py <brightness(1..100)> <width(1..32) <height(1..32)> [program arguments]`
+
+In a second terminal run the server:
+
+`$ sudo ./matrix-server <brightness(1..100)> <width(1..32) <height(1..32)>`
+
+Note: The python client is responsible for making the named pipe if it does not exist. So if the pipe has not been made, the client must be run before to sever or the server will crash silently.
+
+TODO: Make server create pipe if it does not exist
+
+Example:
+
+session 1:
+
+`$ cd client && sudo python ./demo-image.py 50 6 4 test.png`
+
+session 2:
+
+`$ sudo matrix-server`
 
 # Examples
 
