@@ -15,12 +15,12 @@
 
 class MatrixServer {
   public:
-    MatrixServer(uint32_t w, uint32_t h)
-      : rows_(PANEL_SIZE), chain_(24), parallel_(1), width_(w), height_(h) {
+    MatrixServer(uint32_t b, uint32_t w, uint32_t h)
+      : rows_(PANEL_SIZE), chain_(w * h), parallel_(1), width_(w * PANEL_SIZE), height_(h * PANEL_SIZE) {
       if (!io_.Init()) throw "GPIO Error";
       matrix_ = new rgb_matrix::RGBMatrix(&io_, rows_, chain_, parallel_);
       matrix_->set_luminance_correct(true);
-      matrix_->SetBrightness(35);
+      matrix_->SetBrightness(b);
       matrix_->SetPWMBits(8);
       transformer_ = new rgb_matrix::LinkedTransformer();
       matrix_->SetTransformer(transformer_);
@@ -56,7 +56,7 @@ class MatrixServer {
 
     void readFrame(FILE* file) {
       uint32_t bytes = width_ * height_ * 3;
-      int32_t bytes_read = 0;
+      uint32_t bytes_read = 0;
 
       while (bytes_read < bytes) {
         int32_t b = fread(frameBuffer_ + bytes_read, 1, bytes - bytes_read, file);
@@ -92,7 +92,16 @@ class MatrixServer {
 };
 
 int main(int argc, char* argv[]) {
-  MatrixServer canvasInterface(192, 128);
+  if (argc != 4) {
+    std::cerr <<
+      "Invalid params. Usage:\n
+      \tmatrix-server <brightness(0..100)> <width(1..32)> <height(1..32)>\n";
+    exit(1);
+  }
+  uint8_t b = atoi(argv[1]);
+  uint8_t w = atoi(argv[2]);
+  uint8_t h = atoi(argv[3]);
+  MatrixServer canvasInterface(b, w, h);
   int fd = open(PIPE_NAME, O_RDONLY);
   FILE* file = fdopen(fd, "r");
 
