@@ -27,6 +27,9 @@ To hold the panels together, we 3D printed some simple brackets and screwed them
 
 The server assumes that the panels are laid out in an 'S' formation, with the first panel in the bottom left corner, like so:
 
+![layout](https://github.com/backupify/pgmatrix/blob/master/results/panel-order.jpg?raw=true)
+
+The exact number of panels (in the x and y direction) can be configured via command line arguments as long as the panels follow this configuation. 
 
 # Usage
 You'll want to execute the program from a screen / tmux session.
@@ -69,12 +72,14 @@ Currently included are:
 - A mirror wall using the Raspberry Pi camera
 
 # Results and Notes
-After assembling the large (6x4x32px) display, we noticed that it is very straining to look at from a distance of less than six feet. 
+After assembling the large (6x4x32px) display, we noticed that it is very straining to look at from a distance of less than six feet. Additionally, arranging the panels in alternation directions causes a slight contrast between rows when viewed at an angle.
 
 As you can see, these are very simple examples, but pygame makes it very easy to combine these in interesting ways and do all sorts of cool effects. You can very easily play video, manipulate images, create moderately complex pixel animations, or anything else you can do with pygame, which is a lot!
 
-Final display in action:
+Final display in action (please excuse the scan lines!):
 
+A Big Mirror:
 ![Camera](https://github.com/backupify/pgmatrix/blob/master/results/camera.jpg?raw=true)
 
+Pretty good color reproduction:
 ![Color](https://github.com/backupify/pgmatrix/blob/master/results/color.jpg?raw=true)
