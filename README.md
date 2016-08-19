@@ -70,3 +70,11 @@ Currently included are:
 
 # Results and Notes
 After assembling the large (6x4x32px) display, we noticed that it is very straining to look at from a distance of less than six feet. 
+
+As you can see, these are very simple examples, but pygame makes it very easy to combine these in interesting ways and do all sorts of cool effects. You can very easily play video, manipulate images, create moderately complex pixel animations, or anything else you can do with pygame, which is a lot!
+
+Final display in action:
+
+![Camera](https://github.com/backupify/pgmatrix/blob/master/results/camera.jpg?raw=true)
+
+![Color](https://github.com/backupify/pgmatrix/blob/master/results/color.jpg?raw=true)
